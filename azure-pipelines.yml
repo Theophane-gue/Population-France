@@ -28,9 +28,10 @@ steps:
 - script: |
     python get_data.py
   displayName: 'pytest'
+  
 - task: PublishBuildArtifacts@1
     inputs:
-      pathToPublish: '.'                # Publier tous les fichiers du dossier courant
-      artifactName: 'tgz_Results'       # Nom de l'artefact visible dans Azure DevOps
+      pathToPublish: '.'               
+      artifactName: 'tgz_Results'       
       publishLocation: 'Container'
     displayName: 'Publier les fichiers tgz en tant qu’artefacts'
