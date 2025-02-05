@@ -19,5 +19,16 @@ def get_data():
             f.write(response.raw.read())
     return None
 
+def untar_data():
+    with tarfile.open('C:/Users/theop/tolldata.tgz', "r:gz") as tar:
+        tar.extractall()
+    return None
 
+
+
+
+def extract_data_from_csv():
+    data = pd.read_csv('C:/Users/theop/vehicle-data.csv').loc[:,['Rowid', 'Timestamp', 'Anonymized Vehicle number','Vehicle type']]
+    data.to_csv('csv_data.csv')
+get_data()
 
