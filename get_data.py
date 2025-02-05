@@ -7,17 +7,17 @@ import requests as re
 import json
 import os
 import pandas as pd
+import tarfile
+
+
+def get_data():
+    url='https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-DB0250EN-SkillsNetwork/labs/Final%20Assignment/tolldata.tgz'
+    
+    response = re.get(url, stream=True)
+    if response.status_code == 200:
+        with open('tolldata.tgz', 'wb') as f:
+            f.write(response.raw.read())
+    return None
 
 
 
-
-
-
-# 2.
-
-requete_dataset = "https://www.data.gouv.fr/fr/datasets/r/d2a15598-9573-4082-bacd-7c73504e7839"
-
-get_data = re.get(requete_dataset , verify= False)
-data_from_net = get_data.content
-print(data_from_net)
-#data = da(data_from_net )
