@@ -1,34 +1,22 @@
 #This file contain a script getting data from data.gouv.fr via API
 
 
-
-# 1. Import the package
-import requests as re
-import json
-import os
 import pandas as pd
-import tarfile
+import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--input", required=True, help="Input CSV file")
+parser.add_argument("--output", required=True, help="Output CSV file")
+args = parser.parse_args()
 
-def get_data():
-    url='https://cf-courses-data.s3.us.cloud-object-storage.appdomain.cloud/IBM-DB0250EN-SkillsNetwork/labs/Final%20Assignment/tolldata.tgz'
-    
-    response = re.get(url, stream=True)
-    if response.status_code == 200:
-        with open('tolldata.tgz', 'wb') as f:
-            f.write(response.raw.read())
-    return None
+# Load data
+df = pd.read_csv(args.input)
 
-def untar_data():
-    with tarfile.open('C:/Users/theop/tolldata.tgz', "r:gz") as tar:
-        tar.extractall()
-    return None
+# Example transformation
+df["processed_column"] = df["existing_column"] * 2  
 
+# Save processed data
+df.to_csv(args.output, index=False)
 
-
-
-def extract_data_from_csv():
-    data = pd.read_csv('C:/Users/theop/vehicle-data.csv').loc[:,['Rowid', 'Timestamp', 'Anonymized Vehicle number','Vehicle type']]
-    data.to_csv('csv_data.csv')
-get_data()
+print(f"Processed {args.input} and saved as {args.output}")
 
