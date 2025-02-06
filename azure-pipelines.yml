@@ -12,11 +12,11 @@ pool:
 strategy:
   matrix:
     Python311:
+      python.version: '3.11'
 variables:
   storageAccountName: 'datalakestoragetheophane'
   containerName: 'theophane'
   fileName: 'FD_DEC_2021.csv'     
-  python.version: '3.11'
   directoryPath: '.'
 steps:
 - task: AzureCLI@2
