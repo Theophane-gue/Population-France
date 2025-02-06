@@ -29,7 +29,7 @@ steps:
         --account-name $(storageAccountName) \
         --container-name $(containerName) \
         --name "$(fileName)" \
-        --file "./downloaded/$(fileName)" \
+        --file "./$(fileName)" \
         --auth-mode login
   displayName: 'Download Data from Data Lake'
 - task: UsePythonVersion@0
