@@ -10,7 +10,7 @@ parser.add_argument("--output", required=True, help="Output CSV file")
 args = parser.parse_args()
 
 # Load data
-df = pd.read_csv(args.input)
+df = pd.read_csv(args.input,sep=";")
 
 # Example transformation
 df.loc["Sexe",'1'] = "Homme"
