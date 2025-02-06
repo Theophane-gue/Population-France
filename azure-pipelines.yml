@@ -28,7 +28,7 @@ steps:
       az storage blob download \
         --account-name $(storageAccountName) \
         --container-name $(containerName) \
-        --name "$(directoryPath)/$(fileName)" \
+        --name "$(fileName)" \
         --file "./downloaded/$(fileName)" \
         --auth-mode login
   displayName: 'Download Data from Data Lake'
