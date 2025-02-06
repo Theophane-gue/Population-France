@@ -55,7 +55,7 @@ steps:
     inlineScript: |
       az storage blob upload \
         --account-name $(storageAccountName) \
-        --container-name $(processedContainer) \
+        --container-name $(containerName) \
         --name "Test.csv" \
         --file "./Test.csv" \
         --auth-mode login
