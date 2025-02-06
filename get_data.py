@@ -13,8 +13,8 @@ args = parser.parse_args()
 df = pd.read_csv(args.input,sep=";")
 
 # Example transformation
-df.loc["Sexe",'1'] = "Homme"
-df.loc["Sexe",'2'] = "Femme"
+df.loc[df["SEXE"]==1] = "Homme"
+df.loc[df["SEXE"]==2] = "Femme"
 
 # Save processed data
 df.to_csv(args.output, index=False)
