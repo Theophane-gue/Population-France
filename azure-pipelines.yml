@@ -43,7 +43,7 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    python get_data.py --input $(fileName)
+    python get_data.py --input $(fileName) --output $(fileName)
   displayName: 'pytest'
   
 
