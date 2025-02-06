@@ -12,9 +12,25 @@ pool:
 strategy:
   matrix:
     Python311:
-      python.version: '3.11'
-
+variables:
+  storageAccountName: 'datalakestoragetheophane'
+  containerName: 'theophane'
+  fileName: 'FD_DEC_2021.csv'     python.version: '3.11'
+  directoryPath: '.'
 steps:
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'Service-Connection-ADLS'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az storage blob download \
+        --account-name $(storageAccountName) \
+        --container-name $(containerName) \
+        --name "$(directoryPath)/$(fileName)" \
+        --file "./downloaded/$(fileName)" \
+        --auth-mode login
+  displayName: 'Download Data from Data Lake'
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(python.version)'
@@ -26,12 +42,7 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    python get_data.py
+    python get_data.py --input $(fileName)
   displayName: 'pytest'
   
-- task: PublishBuildArtifacts@1
-    inputs:
-      pathToPublish: '.'               
-      artifactName: 'tgz_Results'       
-      publishLocation: 'Container'
-    displayName: 'Publier les fichiers tgz en tant qu’artefacts'
+
