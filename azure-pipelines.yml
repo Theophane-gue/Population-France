@@ -58,5 +58,6 @@ steps:
         --container-name $(containerName) \
         --name "Test.csv" \
         --file "Test.csv" \
+        --overwrite \
         --auth-mode login
   displayName: 'Upload outputfile to Data Lake'
