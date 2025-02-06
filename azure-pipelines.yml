@@ -47,3 +47,16 @@ steps:
   displayName: 'pytest'
   
 
+- task: AzureCLI@2
+  inputs:
+    azureSubscription: 'devops-datalake-sp'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      az storage blob upload \
+        --account-name $(storageAccountName) \
+        --container-name $(processedContainer) \
+        --name "Test.csv" \
+        --file "./Test.csv" \
+        --auth-mode login
+  displayName: 'Upload outputfile to Data Lake'
