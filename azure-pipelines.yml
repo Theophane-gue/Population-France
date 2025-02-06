@@ -57,6 +57,6 @@ steps:
         --account-name $(storageAccountName) \
         --container-name $(containerName) \
         --name "Test.csv" \
-        --file "./Test.csv" \
+        --file "Test.csv" \
         --auth-mode login
   displayName: 'Upload outputfile to Data Lake'
