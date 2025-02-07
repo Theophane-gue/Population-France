@@ -15,7 +15,7 @@ df = pd.read_csv(args.input,sep=";")
 # Example transformation
 df.loc[df["SEXE"]==1,"Sexe"] = "Homme"
 df.loc[df["SEXE"]==2,"Sexe"] = "Femme"
-
+print(df.head(5))
 # Save processed data
 df.to_csv(args.output, index=False)
 
